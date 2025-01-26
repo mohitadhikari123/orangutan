@@ -49,6 +49,7 @@ export default function FileUpload() {
           setErrors(Array.isArray(response.data.errors) ? response.data.errors : []);
 
         } catch (error) {
+          console.log("error" , error);
           setErrors(error.response?.data?.errors || "An error occurred.");
         }
       },
