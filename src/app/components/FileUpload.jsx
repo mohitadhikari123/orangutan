@@ -44,9 +44,10 @@ export default function FileUpload() {
           setStatus(response.data.message || "Upload successful!");
 
           // Set new users and already stored users from response
-          setNewUsers(response.data.newlyInsertedRecords || []);
-          setAlreadyStored(response.data.alreadyStoredRecords || []);
-          setErrors(response.data.errors || []);
+          setNewUsers(Array.isArray(response.data.newlyInsertedRecords) ? response.data.newlyInsertedRecords : []);
+          setAlreadyStored(Array.isArray(response.data.alreadyStoredRecords) ? response.data.alreadyStoredRecords : []);
+          setErrors(Array.isArray(response.data.errors) ? response.data.errors : []);
+
         } catch (error) {
           setErrors(error.response?.data?.errors || "An error occurred.");
         }
